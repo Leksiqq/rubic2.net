@@ -1,0 +1,23 @@
+{
+  "profiles": {
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    },
+    "Профиль 1": {
+      "commandName": "Project",
+      "commandLineArgs": "-i ..\\..\\..\\1.txt"
+    },
+    "Профиль 2": {
+      "commandName": "Project",
+      "commandLineArgs": "-s \"wwww rrbb yyyy ggoo bobo rgrg\""
+    },
+    "Профиль 3": {
+      "commandName": "Project"
+    },
+    "Профиль 4": {
+      "commandName": "Project",
+      "commandLineArgs": "-f ..\\..\\..\\2.txt"
+    }
+  }
+}

@@ -1,17 +1,21 @@
 ﻿using Net.Leksi.Rubic2;
+using Rubic2Console;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
+Options options = Options.Create(args);
+
 StringBuilder sb = new();
 
-string? input = Console.ReadLine();
-while(!string.IsNullOrEmpty(input))
+string? input = options.Reader!.ReadLine();
+while(input is { })
 {
-    sb.Append(Regex.Replace(input, "\\s+", string.Empty));
-    input = Console.ReadLine();
+    sb.Append(RemoveSpaces().Replace(input, string.Empty));
+    input = options.Reader!.ReadLine();
 }
 State start = new();
-Console.WriteLine(sb);
+
 for(int i = 0; i < Math.Min(sb.Length, 24); i++)
 {
     start[i] = sb[i] switch
@@ -28,8 +32,19 @@ for(int i = 0; i < Math.Min(sb.Length, 24); i++)
 }
 Tuple<List<Move>, State> solvation = Solver.Solve(start);
 Console.WriteLine(start);
+Console.WriteLine();
 foreach (var move in solvation.Item1)
 {
     Console.WriteLine($"{move.Face}: {move.Spin}");
 }
+if(solvation.Item1.Count > 0)
+{
+    Console.WriteLine();
+}
 Console.WriteLine(solvation.Item2);
+
+partial class Program
+{
+    [GeneratedRegex("\\s+")]
+    private static partial Regex RemoveSpaces();
+}

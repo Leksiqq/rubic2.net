@@ -4,4 +4,5 @@ public enum Spin
 {
     ClockWise,
     CounterClockWise,
+    HalfTurn,
 }
