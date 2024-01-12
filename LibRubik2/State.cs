@@ -1,10 +1,9 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
-namespace Net.Leksi.Rubic2;
+namespace Net.Leksi.Rubik2;
 
-public struct State : IComparable<State>
+public class State : IComparable<State>
 {
     private static readonly ulong[] s_clearMasks = [
         UInt64.MaxValue ^ 0b111,
@@ -233,7 +232,7 @@ public struct State : IComparable<State>
     private ulong _hi = 0;
     private ulong _lo = 0;
 
-    public readonly Completeness Completeness
+    public Completeness Completeness
     {
         get
         {
@@ -256,7 +255,7 @@ public struct State : IComparable<State>
     }
     public Color this[int index]
     {
-        readonly get
+        get
         {
             if (index < 0 || index > 23)
             {
@@ -286,21 +285,25 @@ public struct State : IComparable<State>
         }
     }
     public State() { }
-   public readonly int CompareTo(State other)
+   public int CompareTo(State? other)
     {
+        if(other is null)
+        {
+            return -1;
+        }
         return _hi < other._hi || (_hi == other._hi && _lo < other._lo) ? -1 :
             (_hi == other._hi && _lo == other._lo ? 0 : 1);
     }
 
-    public override readonly bool Equals([NotNullWhen(true)] object? obj)
+    public override bool Equals([NotNullWhen(true)] object? obj)
     {
         return obj is State other && _hi == other._hi && _lo == other._lo;
     }
-    public override readonly int GetHashCode()
+    public override int GetHashCode()
     {
         return HashCode.Combine(_hi, _lo);
     }
-    public override readonly string ToString()
+    public override string ToString()
     {
         StringBuilder sb = new();
         for(int i = 0; i < 24; ++i)
@@ -332,7 +335,7 @@ public struct State : IComparable<State>
     {
         return !(left == right);
     }
-    internal readonly State GetTransformed(List<int> transformer)
+    internal State GetTransformed(List<int> transformer)
     {
         State result = new();
         for (int i = 0; i < 24; ++i)
@@ -340,6 +343,11 @@ public struct State : IComparable<State>
             result[i] = this[transformer[i]];
         }
         return result;
+    }
+    internal void Assign(State other)
+    {
+        _lo = other._lo;
+        _hi = other._hi;
     }
     internal static State CreateFinished(Color front, Color bottom)
     {
@@ -431,7 +439,7 @@ public struct State : IComparable<State>
         }
         return result;
     }
-    private readonly Corner GetCorner(int cell)
+    private Corner GetCorner(int cell)
     {
         if (cell < 0 || cell > 23)
         {

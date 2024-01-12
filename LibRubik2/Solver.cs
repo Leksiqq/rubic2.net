@@ -1,4 +1,4 @@
-﻿namespace Net.Leksi.Rubic2;
+﻿namespace Net.Leksi.Rubik2;
 
 public static class Solver
 {
@@ -22,6 +22,15 @@ public static class Solver
         { new(Face.Bottom, Spin.ClockWise),           [ 0, 1,22,23, 6, 4, 7, 5,19,18,10,11,12,13,14,15,16,17, 2, 3,20,21, 9, 8 ] },
         { new(Face.Bottom, Spin.CounterClockWise),    [ 0, 1,18,19, 5, 7, 4, 6,23,22,10,11,12,13,14,15,16,17, 9, 8,20,21, 2, 3 ] },
         { new(Face.Bottom, Spin.HalfTurn),            [ 0, 1, 9, 8, 7, 6, 5, 4, 3, 2,10,11,12,13,14,15,16,17,22,23,20,21,18,19 ] },
+        { new(Face.FrontBack, Spin.ClockWise),           [ 2, 0, 3, 1,18,16,19,17, 9,11, 8,10,22,20,23,21,14,12,15,13, 6, 4, 7, 5 ] },
+        { new(Face.FrontBack, Spin.CounterClockWise),    [ 1, 3, 0, 2,21,23,20,22,10, 8,11, 9,17,19,16,18, 5, 7, 4, 6,13,15,12,14 ] },
+        { new(Face.FrontBack, Spin.HalfTurn),            [ 3, 2, 1, 0,15,14,13,12,11,10, 9, 8, 7, 6, 5, 4,23,22,21,20,19,18,17,16 ] },
+        { new(Face.RightLeft, Spin.ClockWise),           [ 4, 5, 6, 7, 8, 9,10,11,12,13,14,15, 0, 1, 2, 3,18,16,19,17,21,23,20,22 ] },
+        { new(Face.RightLeft, Spin.CounterClockWise),    [12,13,14,15, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,17,19,16,18,22,20,23,21 ] },
+        { new(Face.RightLeft, Spin.HalfTurn),            [ 8, 9,10,11,12,13,14,15, 0, 1, 2, 3, 4, 5, 6, 7,19,18,17,16,23,22,21,20 ] },
+        { new(Face.TopBottom, Spin.ClockWise),           [16,17,18,19, 5, 7, 4, 6,23,22,21,20,14,12,15,13,11,10, 9, 8, 0, 1, 2, 3 ] },
+        { new(Face.TopBottom, Spin.CounterClockWise),    [20,21,22,23, 6, 4, 7, 5,19,18,17,16,13,15,12,14, 0, 1, 2, 3,11,10, 9, 8 ] },
+        { new(Face.TopBottom, Spin.HalfTurn),            [11,10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0,15,14,13,12,20,21,22,23,16,17,18,19 ] },
     };
     private static readonly HashSet<State> s_finished = [
         State.CreateFinished(Color.White, Color.Red),
@@ -49,7 +58,11 @@ public static class Solver
         State.CreateFinished(Color.Green, Color.Yellow),
         State.CreateFinished(Color.Green, Color.Red),
     ];
-    public static Tuple<List<Move>, State> Solve(State state)
+    public static void Move(State state, Move move)
+    {
+        state.Assign(state.GetTransformed(s_transforms[move]));
+    }
+    public static Tuple<List<Move>, State> Solve(State state, State? target = null)
     {
         if (state.Completeness is Completeness.Incomplete)
         {
@@ -69,10 +82,18 @@ public static class Solver
             Dictionary<State, Tuple<State, Move>> prev = [];
             List<Queue<State>> qu0 = [ new() ];
             Dictionary<State, int> dists0 = [];
-            foreach(State s in s_finished)
+            if(target is State t)
             {
-                qu0[0].Enqueue(s);
-                dists0[s] = 0;
+                qu0[0].Enqueue(t);
+                dists0[t] = 0;
+            }
+            else
+            {
+                foreach (State s in s_finished)
+                {
+                    qu0[0].Enqueue(s);
+                    dists0[s] = 0;
+                }
             }
             List<Queue<State>> qu = [ new() ];
             Dictionary<State, int> dists = [];

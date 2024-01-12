@@ -6,18 +6,18 @@
     },
     "Профиль 1": {
       "commandName": "Project",
-      "commandLineArgs": "-i ..\\..\\..\\1.txt"
+      "commandLineArgs": "-f ..\\..\\..\\1.txt -v"
     },
     "Профиль 2": {
       "commandName": "Project",
-      "commandLineArgs": "-s \"wwww rrbb yyyy ggoo bobo rgrg\""
+      "commandLineArgs": "-s \"wwww rrbb yyyy ggoo bobo rgrg\"\r\n-ts \"yyyy bbbb wwww gggg rrrr oooo\""
     },
     "Профиль 3": {
       "commandName": "Project"
     },
     "Профиль 4": {
       "commandName": "Project",
-      "commandLineArgs": "-f ..\\..\\..\\2.txt"
+      "commandLineArgs": "-f ..\\..\\..\\2.txt -v"
     }
   }
 }

@@ -1,4 +1,4 @@
-﻿namespace Net.Leksi.Rubic2;
+﻿namespace Net.Leksi.Rubik2;
 
 public enum Completeness
 {

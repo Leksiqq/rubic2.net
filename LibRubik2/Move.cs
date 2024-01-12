@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Net.Leksi.Rubic2;
+namespace Net.Leksi.Rubik2;
 
 public readonly struct Move(Face face, Spin spin)
 {

@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Net.Leksi.Rubic2;
+namespace Net.Leksi.Rubik2;
 
-public readonly struct Corner(params Color[] colors) : IComparable<Corner>
+internal readonly struct Corner(params Color[] colors) : IComparable<Corner>
 {
     private readonly Color[] _colors = [.. colors.OrderBy(c => c)];
 

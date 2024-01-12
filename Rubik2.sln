@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibRubik2", "LibRubik2\LibRubik2.csproj", "{A095639B-DBC1-4DA7-89F5-82542E6407FF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rubik2Console", "Rubik2Console\Rubik2Console.csproj", "{90BD24AB-7F82-4B33-9C3F-1BBA527CF224}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A095639B-DBC1-4DA7-89F5-82542E6407FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A095639B-DBC1-4DA7-89F5-82542E6407FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A095639B-DBC1-4DA7-89F5-82542E6407FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A095639B-DBC1-4DA7-89F5-82542E6407FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90BD24AB-7F82-4B33-9C3F-1BBA527CF224}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90BD24AB-7F82-4B33-9C3F-1BBA527CF224}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90BD24AB-7F82-4B33-9C3F-1BBA527CF224}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90BD24AB-7F82-4B33-9C3F-1BBA527CF224}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {752CF4F5-6B64-4529-B63E-88C3C671F278}
+	EndGlobalSection
+EndGlobal

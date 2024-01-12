@@ -1,4 +1,4 @@
-﻿namespace Net.Leksi.Rubic2;
+﻿namespace Net.Leksi.Rubik2;
 
 public enum Face
 {
@@ -8,4 +8,7 @@ public enum Face
     Left,
     Top,
     Bottom,
+    FrontBack,
+    RightLeft,
+    TopBottom,
 }
