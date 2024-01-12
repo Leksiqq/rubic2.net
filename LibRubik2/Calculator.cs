@@ -62,18 +62,18 @@ public static class Calculator
     {
         state.Assign(state.GetTransformed(s_transforms[move]));
     }
-    public static Tuple<List<Move>, State> Solve(State state, State? target = null)
+    public static Tuple<List<Move>, State> Solve(State source, State? target = null)
     {
-        if (state.Completeness is Completeness.Incomplete)
+        if (source.Completeness is Completeness.Incomplete)
         {
-            throw new InvalidOperationException("Input state is incomplete!");
+            throw new InvalidOperationException("Input source is incomplete!");
         }
-        if (state.Completeness is Completeness.Wrong)
+        if (source.Completeness is Completeness.Wrong)
         {
-            throw new InvalidOperationException("Input state is wrong!");
+            throw new InvalidOperationException("Input source is wrong!");
         }
         List<Move> list = [];
-        if (!s_finished.Contains(state))
+        if (!s_finished.Contains(source))
         {
             int ans = -1;
             State found = new();
@@ -97,8 +97,8 @@ public static class Calculator
             }
             List<Queue<State>> qu = [ new() ];
             Dictionary<State, int> dists = [];
-            qu[0].Enqueue(state);
-            dists[state] = 0;
+            qu[0].Enqueue(source);
+            dists[source] = 0;
 
             for (int i = 0; ans == -1 && i < Math.Max(qu.Count, qu0.Count); ++i)
             {
@@ -159,7 +159,7 @@ public static class Calculator
             }
             if (ans == -1)
             {
-                throw new InvalidOperationException("Input state is unreachable!");
+                throw new InvalidOperationException("Input source is unreachable!");
             }
 
             Stack<Move> solve = new();
@@ -195,6 +195,6 @@ public static class Calculator
                 cur = obj.Item1;
             }
         }
-        return new Tuple<List<Move>, State>(list, state);
+        return new Tuple<List<Move>, State>(list, source);
     }
 }
