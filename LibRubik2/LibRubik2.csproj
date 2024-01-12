@@ -13,10 +13,10 @@
     <Authors>leksiq</Authors>
     <Copyright>Алексей Юрьевич Захаров &lt;leksi@leksi.net&gt;, 2024</Copyright>
     <PackageProjectUrl>https://github.com/Leksiqq/rubik2.net/wiki</PackageProjectUrl>
-    <!--<PackageReadmeFile>README.md</PackageReadmeFile>-->
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/Leksiqq/rubik2.net</RepositoryUrl>
     <IsPackable>true</IsPackable>
-    <Version>1.0.1</Version>
+    <Version>1.0.3</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>Rubik-cube-2x2x2-calculator</PackageTags>
     <Description>Библиотека Net.Leksi.LibRubik2 позволяет вычислить состояние кубика Рубика 2х2х2 при различных движениях. Также позволяет сгенерировать инструкцию для его восстановления в собранное состояние. The Net.Leksi.LibRubik2 library allows you to calculate the state of a 2x2x2 Rubik's cube under various movements. It also allows you to generate instructions to restore it to its assembled state.</Description>
@@ -26,11 +26,11 @@
     <Move SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="W:\C#\nuget.local" />
   </Target>
 
-  <!--ItemGroup>
+  <ItemGroup>
     <None Include="..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-  </ItemGroup>-->
+  </ItemGroup>
 
 </Project>

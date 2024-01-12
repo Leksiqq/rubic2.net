@@ -43,7 +43,7 @@ for(int i = 0; i < Math.Min(sb.Length, 48); i++)
 }
 try
 {
-    Tuple<List<Move>, State> solvation = Solver.Solve(start, target);
+    Tuple<List<Move>, State> solvation = Calculator.Solve(start, target);
     Console.Write(start);
     if (target is { })
     {
@@ -55,7 +55,7 @@ try
     {
         if (options.ShowIntermediateStates)
         {
-            Solver.Move(start, move);
+            Calculator.Move(start, move);
             Console.Write($"{{0,-28}}-> {start}", $"{move.Face}: {move.Spin}");
         }
         else

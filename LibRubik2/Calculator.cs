@@ -1,6 +1,6 @@
 ﻿namespace Net.Leksi.Rubik2;
 
-public static class Solver
+public static class Calculator
 {
     private static readonly Dictionary<Move, List<int>> s_transforms = new()
     {
