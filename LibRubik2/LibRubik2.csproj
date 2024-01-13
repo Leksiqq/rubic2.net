@@ -2,13 +2,12 @@
 
   <PropertyGroup>
     <LangVersion>12.0</LangVersion>
-    <TargetFrameworks>net8.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net8.0-windows;net6.0-windows</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>Net.Leksi.Rubik2</RootNamespace>
     <AssemblyName>Net.Leksi.LibRubik2</AssemblyName>
     <OutputType>Library</OutputType>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Rubik`s cube 2x2x2 calculator</Title>
     <Authors>leksiq</Authors>
     <Copyright>Алексей Юрьевич Захаров &lt;leksi@leksi.net&gt;, 2024</Copyright>
@@ -16,11 +15,14 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/Leksiqq/rubik2.net</RepositoryUrl>
     <IsPackable>true</IsPackable>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>Rubik-cube-2x2x2-calculator</PackageTags>
     <Description>Калькулятор для  кубика Рубика 2х2х2. The 2x2x2 Rubik's cube calculator.</Description>
     <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
   <Target Name="CopyPackage" AfterTargets="Pack">
     <Move SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="W:\C#\nuget.local" />

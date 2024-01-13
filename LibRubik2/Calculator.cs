@@ -1,4 +1,6 @@
-﻿namespace Net.Leksi.Rubik2;
+﻿using System.Formats.Asn1;
+
+namespace Net.Leksi.Rubik2;
 
 public static class Calculator
 {
@@ -73,7 +75,7 @@ public static class Calculator
             throw new InvalidOperationException("Input source is wrong!");
         }
         List<Move> list = [];
-        if (!s_finished.Contains(source))
+        if ((target is null && !s_finished.Contains(source)) || (target is { } && source != target))
         {
             int ans = -1;
             State found = new();

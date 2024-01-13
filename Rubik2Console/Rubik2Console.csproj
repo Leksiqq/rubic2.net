@@ -3,13 +3,17 @@
   <PropertyGroup>
     <LangVersion>12.0</LangVersion>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net8.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net8.0-windows;net6.0-windows</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Net.Leksi.LibRubik2" Version="1.0.5" />
+  <ItemGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <ProjectReference Include="..\LibRubik2\LibRubik2.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(Configuration)' == 'Release' ">
+    <PackageReference Include="Net.Leksi.LibRubik2" Version="1.0.*" />
   </ItemGroup>
 
 </Project>

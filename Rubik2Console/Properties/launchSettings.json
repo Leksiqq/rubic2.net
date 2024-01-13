@@ -10,7 +10,7 @@
     },
     "Профиль 2": {
       "commandName": "Project",
-      "commandLineArgs": "-s \"wwww rrbb yyyy ggoo bobo rgrg\"\r\n-ts \"yyyy bbbb wwww gggg rrrr oooo\""
+      "commandLineArgs": "-s \"yyyy bbbb wwww gggg rrrr oooo\"\r\n-ts \"yyyy bbbb wwww gggg rrrr oooo\""
     },
     "Профиль 3": {
       "commandName": "Project"
@@ -18,6 +18,10 @@
     "Профиль 4": {
       "commandName": "Project",
       "commandLineArgs": "-f ..\\..\\..\\2.txt -v"
+    },
+    "Профиль 5": {
+      "commandName": "Project",
+      "commandLineArgs": "-s \"wwww rrrr yyyy oooo bbbb gggg\"\r\n-is \"f:> r:< bo:v\" -v"
     }
   }
 }

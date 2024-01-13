@@ -5,8 +5,11 @@ using System.Text.RegularExpressions;
 
 Options options = Options.Create(args);
 Regex reSpaces = new("\\s+");
+Regex reInstruction = new("([^:]+):([<v>])", RegexOptions.IgnoreCase);
 
 StringBuilder sb = new();
+
+State start = new();
 
 string? input = options.Reader!.ReadLine();
 while(input is { })
@@ -14,79 +17,187 @@ while(input is { })
     sb.Append(reSpaces.Replace(input, string.Empty));
     input = options.Reader.ReadLine();
 }
-if(options.TargetReader is { })
+if(sb.Length != 24)
 {
-    input = options.TargetReader.ReadLine();
-    while (input is { })
+    Console.WriteLine($"A source state must have 24 color charactes, but has {sb.Length}");
+    Environment.Exit(1);
+}
+for (int i = 0; i < sb.Length; i++)
+{
+    start[i] = ParseColor(sb[i]);
+}
+sb.Clear();
+if (options.InstructionReader is null)
+{
+    State? target = null;
+    if (options.TargetReader is { })
     {
-        sb.Append(reSpaces.Replace(input, string.Empty));
+        target = new();
         input = options.TargetReader.ReadLine();
+        while (input is { })
+        {
+            sb.Append(reSpaces.Replace(input, string.Empty));
+            input = options.TargetReader.ReadLine();
+        }
+        if (sb.Length != 24)
+        {
+            Console.WriteLine($"A target state must have 24 color charactes, but has {sb.Length}");
+            Environment.Exit(1);
+        }
+        for (int i = 0; i < sb.Length; i++)
+        {
+            target[i] = ParseColor(sb[i]);
+        }
+    }
+
+    try
+    {
+        Tuple<List<Move>, State> solvation = Calculator.Solve(start, target);
+        Console.Write(start);
+        if (target is { })
+        {
+            Console.Write($" -> {target}");
+        }
+        Console.WriteLine();
+        Console.WriteLine();
+        foreach (var move in solvation.Item1)
+        {
+            if (options.ShowIntermediateStates)
+            {
+                Calculator.Move(start, move);
+                Console.Write($"{{0,-28}}-> {start}", $"{move.Face}: {move.Spin}");
+            }
+            else
+            {
+                Console.Write($"{move.Face}: {move.Spin}");
+            }
+
+            Console.WriteLine();
+        }
+        if (solvation.Item1.Count > 0)
+        {
+            Console.WriteLine();
+        }
+        Console.WriteLine(solvation.Item2);
+    }
+    catch (Exception ex)
+    {
+#if DEBUG
+        throw;
+#else
+        Console.WriteLine(ex.Message);
+        Environment.Exit(1);
+#endif
     }
 }
-State start = new();
-State? target = null;
-
-for(int i = 0; i < Math.Min(sb.Length, 48); i++)
+else
 {
-    if(i < 24)
+    List<string> instructions = [];
+    input = options.InstructionReader.ReadLine();
+    while (input is { })
     {
-        start[i] = DecodeColor(sb, i);
+        instructions.AddRange(reSpaces.Split(input));
+        input = options.InstructionReader.ReadLine();
+    }
+    try
+    {
+        Console.WriteLine(start);
+        Console.WriteLine();
+        foreach (string instruction in instructions)
+        {
+            Move move = ParseInstruction(instruction);
+            Calculator.Move(start, move);
+            if (options.ShowIntermediateStates)
+            {
+                Console.WriteLine($"{{0,-28}}-> {start}", $"{move.Face}: {move.Spin}");
+            }
+        }
+        if (options.ShowIntermediateStates) 
+        { 
+            Console.WriteLine();
+        }
+        Console.WriteLine(start);
+    }
+    catch (Exception ex)
+    {
+#if DEBUG
+        throw;
+#else
+        Console.WriteLine(ex.Message);
+        Environment.Exit(1);
+#endif
+    }
+}
+
+Move ParseInstruction(string instruction)
+{
+    Match m = reInstruction.Match(instruction);
+    if (!m.Success)
+    {
+        throw new InvalidOperationException($"Unexpexted instruction: {instruction}");
+    }
+    Face face;
+    if ("f".Equals(m.Groups[1].Value.ToLower()))
+    {
+        face = Face.Front;
+    }
+    else if ("bo".Equals(m.Groups[1].Value.ToLower()))
+    {
+        face = Face.Bottom;
+    }
+    else if ("ba".Equals(m.Groups[1].Value.ToLower()))
+    {
+        face = Face.Back;
+    }
+    else if ("t".Equals(m.Groups[1].Value.ToLower()))
+    {
+        face = Face.Top;
+    }
+    else if ("r".Equals(m.Groups[1].Value.ToLower()))
+    {
+        face = Face.Right;
+    }
+    else if ("l".Equals(m.Groups[1].Value.ToLower()))
+    {
+        face = Face.Left;
+    }
+    else if ("fb".Equals(m.Groups[1].Value.ToLower()))
+    {
+        face = Face.FrontBack;
+    }
+    else if ("rl".Equals(m.Groups[1].Value.ToLower()))
+    {
+        face = Face.RightLeft;
+    }
+    else if ("tb".Equals(m.Groups[1].Value.ToLower()))
+    {
+        face = Face.TopBottom;
     }
     else
     {
-        if(i == 24)
-        {
-            target = new();
-        }
-        target![i - 24] = DecodeColor(sb, i);
+        throw new InvalidOperationException($"Unexpexted instruction: {instruction}");
     }
-}
-try
-{
-    Tuple<List<Move>, State> solvation = Calculator.Solve(start, target);
-    Console.Write(start);
-    if (target is { })
+    Spin spin = m.Groups[2].Value.ToLower()[0] switch
     {
-        Console.Write($" -> {target}");
-    }
-    Console.WriteLine();
-    Console.WriteLine();
-    foreach (var move in solvation.Item1)
-    {
-        if (options.ShowIntermediateStates)
-        {
-            Calculator.Move(start, move);
-            Console.Write($"{{0,-28}}-> {start}", $"{move.Face}: {move.Spin}");
-        }
-        else
-        {
-            Console.Write($"{move.Face}: {move.Spin}");
-        }
-
-        Console.WriteLine();
-    }
-    if (solvation.Item1.Count > 0)
-    {
-        Console.WriteLine();
-    }
-    Console.WriteLine(solvation.Item2);
-}
-catch(Exception ex)
-{
-    Console.WriteLine(ex.Message);
+        '>' => Spin.ClockWise,
+        '<' => Spin.CounterClockWise,
+        'v' => Spin.HalfTurn,
+        _ => throw new NotImplementedException()
+    };
+    return new Move(face, spin);
 }
 
-static Color DecodeColor(StringBuilder sb, int i)
+static Color ParseColor(char c)
 {
-    return sb[i] switch
+    return c switch
     {
-        'w' => Color.White,
-        'r' => Color.Red,
-        'b' => Color.Blue,
-        'g' => Color.Green,
-        'o' => Color.Orange,
-        'y' => Color.Yellow,
-        _ => throw new InvalidOperationException($"Unexpected character: '{sb[i]}'")
+        'w' or 'W' => Color.White,
+        'r' or 'R' => Color.Red,
+        'b' or 'B' => Color.Blue,
+        'g' or 'G' => Color.Green,
+        'o' or 'O' => Color.Orange,
+        'y' or 'Y' => Color.Yellow,
+        _ => throw new InvalidOperationException($"Unexpected character: '{c}'")
     };
 }
 
