@@ -1,5 +1,4 @@
-﻿using Rubik2Con;
-using Rubik2Con.Properties;
+﻿using Rubik2Con.Properties;
 using System.Diagnostics;
 using System.Globalization;
 

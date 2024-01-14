@@ -15,11 +15,12 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/Leksiqq/rubik2.net</RepositoryUrl>
     <IsPackable>true</IsPackable>
-    <Version>1.0.6</Version>
+    <Version>1.0.7</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>Rubik-cube-2x2x2-calculator</PackageTags>
     <Description>Калькулятор для  кубика Рубика 2х2х2. The 2x2x2 Rubik's cube calculator.</Description>
     <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>

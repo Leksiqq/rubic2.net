@@ -12,6 +12,10 @@ internal static class Constants
     internal const int s_inputSourceUnreachableCode = 4;
     internal const string s_targetIncomplete = "The target is incomplete!";
     internal const int s_targetIncompleteCode = 5;
-    internal const string targetWrong = "The target is wrong!";
+    internal const string s_targetWrong = "The target is wrong!";
     internal const int s_targetWrongCode = 6;
+    internal const string s_stateIncomplete = "The state is incomplete!";
+    internal const int s_stateIncompleteCode = 7;
+    internal const string s_stateWrong = "The state is wrong!";
+    internal const int s_stateWrongCode = 8;
 }

@@ -62,6 +62,14 @@ public static class Calculator
     ];
     public static void Move(State state, Move move)
     {
+        if (state.Completeness is Completeness.Incomplete)
+        {
+            throw new InvalidOperationException(Constants.s_stateIncomplete) { HResult = Constants.s_stateIncompleteCode };
+        }
+        if (state.Completeness is Completeness.Wrong)
+        {
+            throw new InvalidOperationException(Constants.s_stateWrong) { HResult = Constants.s_stateWrongCode };
+        }
         state.Assign(state.GetTransformed(s_transforms[move]));
     }
     public static Tuple<List<Move>, State> Solve(State source, State? target = null)
@@ -82,23 +90,23 @@ public static class Calculator
             }
             if (target.Completeness is Completeness.Wrong)
             {
-                throw new InvalidOperationException(Constants.targetWrong) { HResult = Constants.s_targetWrongCode };
+                throw new InvalidOperationException(Constants.s_targetWrong) { HResult = Constants.s_targetWrongCode };
             }
         }
         List<Move> list = [];
         if ((target is null && !s_finished.Contains(source)) || (target is { } && source != target))
         {
             int ans = -1;
-            State found = new();
+            State? found = null;
 
             Dictionary<State, Tuple<State, Move>> prev0 = [];
             Dictionary<State, Tuple<State, Move>> prev = [];
             List<Queue<State>> qu0 = [ new() ];
             Dictionary<State, int> dists0 = [];
-            if(target is State t)
+            if(target is { })
             {
-                qu0[0].Enqueue(t);
-                dists0[t] = 0;
+                qu0[0].Enqueue(target);
+                dists0[target] = 0;
             }
             else
             {

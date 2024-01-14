@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Rubik2Con": {
+      "commandName": "Project",
+      "commandLineArgs": "/s \"yyyy bbbb wwww gggg rrrr oooo\" /ts \"oooo bbbb rrrr gggg yyyy wwww\" /v"
+    }
+  }
+}

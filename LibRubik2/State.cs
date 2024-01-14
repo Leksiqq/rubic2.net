@@ -453,7 +453,12 @@ public class State : IComparable<State>
     {
         if (index < 0 || index > 23)
         {
-            throw new IndexOutOfRangeException(string.Format(Constants.s_colorIndexOutOfRange, index)) { HResult = Constants.s_colorIndexOutOfRangeCode };
+            IndexOutOfRangeException result = new(string.Format(Constants.s_colorIndexOutOfRange, index))
+            {
+                HResult = index
+            };
+            result.Data.Add("index", index);
+            throw result;
         }
     }
 
