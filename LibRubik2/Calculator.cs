@@ -68,11 +68,22 @@ public static class Calculator
     {
         if (source.Completeness is Completeness.Incomplete)
         {
-            throw new InvalidOperationException("Input source is incomplete!");
+            throw new InvalidOperationException(Constants.s_sourceIncomplete) { HResult = Constants.s_sourceIncompleteCode };
         }
         if (source.Completeness is Completeness.Wrong)
         {
-            throw new InvalidOperationException("Input source is wrong!");
+            throw new InvalidOperationException(Constants.s_sourceWrong) { HResult = Constants.s_sourceWrongCode };
+        }
+        if(target is { })
+        {
+            if (target.Completeness is Completeness.Incomplete)
+            {
+                throw new InvalidOperationException(Constants.s_targetIncomplete) { HResult = Constants.s_targetIncompleteCode };
+            }
+            if (target.Completeness is Completeness.Wrong)
+            {
+                throw new InvalidOperationException(Constants.targetWrong) { HResult = Constants.s_targetWrongCode };
+            }
         }
         List<Move> list = [];
         if ((target is null && !s_finished.Contains(source)) || (target is { } && source != target))
@@ -161,7 +172,7 @@ public static class Calculator
             }
             if (ans == -1)
             {
-                throw new InvalidOperationException("Input source is unreachable!");
+                throw new InvalidOperationException(Constants.s_TargetUnreachable) { HResult = Constants.s_inputSourceUnreachableCode };
             }
 
             Stack<Move> solve = new();

@@ -3,14 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibRubik2", "LibRubik2\LibRubik2.csproj", "{F95F02F7-3BB1-45CC-8C9A-DC60F5CE132C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibRubik2", "LibRubik2\LibRubik2.csproj", "{3028172C-D12B-416B-A126-5EC2F4B11C08}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rubik2Console", "Rubik2Console\Rubik2Console.csproj", "{946160EB-8F98-463D-92C8-674E74FF7021}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rubik2Con", "Rubik2Con\Rubik2Con.csproj", "{8D7DA95A-9A9A-43EF-90AA-3A91EC099E19}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{FA1BFF16-F751-4304-A0C4-A07159B64CEA}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rubik2Console", "Rubik2Console\Rubik2Console.csproj", "{F9999473-6D5B-4296-85FE-331A6E06A0EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,19 +15,23 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F95F02F7-3BB1-45CC-8C9A-DC60F5CE132C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F95F02F7-3BB1-45CC-8C9A-DC60F5CE132C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F95F02F7-3BB1-45CC-8C9A-DC60F5CE132C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F95F02F7-3BB1-45CC-8C9A-DC60F5CE132C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{946160EB-8F98-463D-92C8-674E74FF7021}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{946160EB-8F98-463D-92C8-674E74FF7021}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{946160EB-8F98-463D-92C8-674E74FF7021}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{946160EB-8F98-463D-92C8-674E74FF7021}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3028172C-D12B-416B-A126-5EC2F4B11C08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3028172C-D12B-416B-A126-5EC2F4B11C08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3028172C-D12B-416B-A126-5EC2F4B11C08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3028172C-D12B-416B-A126-5EC2F4B11C08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D7DA95A-9A9A-43EF-90AA-3A91EC099E19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D7DA95A-9A9A-43EF-90AA-3A91EC099E19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D7DA95A-9A9A-43EF-90AA-3A91EC099E19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D7DA95A-9A9A-43EF-90AA-3A91EC099E19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9999473-6D5B-4296-85FE-331A6E06A0EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9999473-6D5B-4296-85FE-331A6E06A0EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9999473-6D5B-4296-85FE-331A6E06A0EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9999473-6D5B-4296-85FE-331A6E06A0EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {EE011244-A6F0-4BEA-8AE4-F0BFDA972425}
+		SolutionGuid = {82CD90F5-F6AF-45E5-B7A2-1DF948CE3A5C}
 	EndGlobalSection
 EndGlobal

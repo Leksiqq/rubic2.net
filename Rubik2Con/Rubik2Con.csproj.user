@@ -5,7 +5,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <ActiveDebugProfile>Профиль 5</ActiveDebugProfile>
-    <_LastSelectedProfileId>W:\C#\Rubik2\Rubik2Console\Properties\PublishProfiles\ClickOnceProfile.pubxml</_LastSelectedProfileId>
+    <_LastSelectedProfileId>W:\C#\Rubik2\Rubik2Console\Properties\PublishProfiles\ClickOnceProfile1.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>

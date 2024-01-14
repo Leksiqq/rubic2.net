@@ -6,18 +6,18 @@ namespace Net.Leksi.Rubik2;
 public class State : IComparable<State>
 {
     private static readonly ulong[] s_clearMasks = [
-        UInt64.MaxValue ^ 0b111,
-        UInt64.MaxValue ^ 0b111000,
-        UInt64.MaxValue ^ 0b111000000,
-        UInt64.MaxValue ^ 0b111000000000,
-        UInt64.MaxValue ^ 0b111000000000000,
-        UInt64.MaxValue ^ 0b111000000000000000,
-        UInt64.MaxValue ^ 0b111000000000000000000,
-        UInt64.MaxValue ^ 0b111000000000000000000000,
-        UInt64.MaxValue ^ 0b111000000000000000000000000,
-        UInt64.MaxValue ^ 0b111000000000000000000000000000,
-        UInt64.MaxValue ^ 0b111000000000000000000000000000000,
-        UInt64.MaxValue ^ 0b111000000000000000000000000000000000,
+        ulong.MaxValue ^ 0b111,
+        ulong.MaxValue ^ 0b111000,
+        ulong.MaxValue ^ 0b111000000,
+        ulong.MaxValue ^ 0b111000000000,
+        ulong.MaxValue ^ 0b111000000000000,
+        ulong.MaxValue ^ 0b111000000000000000,
+        ulong.MaxValue ^ 0b111000000000000000000,
+        ulong.MaxValue ^ 0b111000000000000000000000,
+        ulong.MaxValue ^ 0b111000000000000000000000000,
+        ulong.MaxValue ^ 0b111000000000000000000000000000,
+        ulong.MaxValue ^ 0b111000000000000000000000000000000,
+        ulong.MaxValue ^ 0b111000000000000000000000000000000000,
     ];
     #region finished coloring
 
@@ -257,10 +257,7 @@ public class State : IComparable<State>
     {
         get
         {
-            if (index < 0 || index > 23)
-            {
-                throw new IndexOutOfRangeException();
-            }
+            CheckIndex(index);
             if (index / 12 == 0)
             {
                 return (Color)((_lo & (7UL << index * 3)) >> index * 3);
@@ -270,10 +267,7 @@ public class State : IComparable<State>
         }
         set
         {
-            if (index < 0 || index > 23)
-            {
-                throw new IndexOutOfRangeException();
-            }
+            CheckIndex(index);
             if (index / 12 == 0)
             {
                 _lo &= s_clearMasks[index];
@@ -284,8 +278,9 @@ public class State : IComparable<State>
             _hi |= (((ulong)value) << index * 3);
         }
     }
+
     public State() { }
-   public int CompareTo(State? other)
+    public int CompareTo(State? other)
     {
         if(other is null)
         {
@@ -441,10 +436,7 @@ public class State : IComparable<State>
     }
     private Corner GetCorner(int cell)
     {
-        if (cell < 0 || cell > 23)
-        {
-            throw new IndexOutOfRangeException();
-        }
+        CheckIndex(cell);
         return cell switch
         {
             0 or 14 or 21 => new Corner(this[0], this[14], this[21]),
@@ -456,6 +448,13 @@ public class State : IComparable<State>
             10 or 12 or 20 => new Corner(this[10], this[12], this[20]),
             _ => new Corner(this[11], this[13], this[17]),
         };
+    }
+    private void CheckIndex(int index)
+    {
+        if (index < 0 || index > 23)
+        {
+            throw new IndexOutOfRangeException(string.Format(Constants.s_colorIndexOutOfRange, index)) { HResult = Constants.s_colorIndexOutOfRangeCode };
+        }
     }
 
 }

@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using Rubik2Con;
+using Rubik2Con.Properties;
+using System.Diagnostics;
 using System.Globalization;
 
 namespace Rubik2Console;
@@ -11,12 +13,15 @@ internal class Options
     internal TextReader? InstructionReader { get; set; } = null;
     internal static Options Create(string[] args)
     {
+        Options options = new();
         bool waitReader = false;
         bool waitString = false;
         bool waitTarget = false;
         bool waitInstruction = false;
+        bool go = false;
+        bool help = false;
+        string? unexpectedArg = null;
 
-        Options options = new Options();
         foreach (string arg in args)
         {
             if (waitReader)
@@ -53,75 +58,82 @@ internal class Options
                 waitString = false;
                 waitTarget = false;
             }
-            else if ("-f".Equals(arg))
+            else if ("-f".Equals(arg) || "/f".Equals(arg))
             {
                 waitReader = true;
             }
-            else if ("-s".Equals(arg))
+            else if ("-s".Equals(arg) || "/s".Equals(arg))
             {
                 waitString = true;
             }
-            else if ("-tf".Equals(arg))
+            else if ("-tf".Equals(arg) || "/tf".Equals(arg))
             {
                 waitReader = true;
                 waitTarget = true;
             }
-            else if ("-ts".Equals(arg))
+            else if ("-ts".Equals(arg) || "/ts".Equals(arg))
             {
                 waitString = true;
                 waitTarget = true;
             }
-            else if ("-if".Equals(arg))
+            else if ("-if".Equals(arg) || "/if".Equals(arg))
             {
                 waitReader = true;
                 waitInstruction = true;
             }
-            else if ("-is".Equals(arg))
+            else if ("-is".Equals(arg) || "/is".Equals(arg))
             {
                 waitString = true;
                 waitInstruction = true;
             }
-            else if ("-v".Equals(arg))
+            else if ("-v".Equals(arg) || "/v".Equals(arg))
             {
                 options.ShowIntermediateStates = true;
             }
-            else if ("-?".Equals(arg))
+            else if ("-?".Equals(arg) || "/?".Equals(arg))
+            {
+                help = true;
+            }
+            else if ("-go".Equals(arg) || "/go".Equals(arg))
+            {
+                go = true;
+            }
+            else if (arg.StartsWith("-locale:") || arg.StartsWith("/locale:"))
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(arg.Substring("/locale:".Length));
+            }
+            else
+            {
+                unexpectedArg = arg;
+            }
+        }
+        if (options.Reader is null || (options.TargetReader is { } && options.InstructionReader is { }) || unexpectedArg is { } || help)
+        {
+            if (help)
             {
                 CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
                 Process proc = new();
                 proc.StartInfo.FileName = "explorer";
-                proc.StartInfo.Arguments = $"\"https://github.com/Leksiqq/rubik2.net/wiki/{(currentCulture.TwoLetterISOLanguageName.Equals("ru") ? "%D0%94%D0%B5%D0%BC%D0%BE" : "Demo")}-Rubik2Console\"";
+                proc.StartInfo.Arguments = $"\"https://github.com/Leksiqq/rubik2.net/wiki/{Resources.Demo}-Rubik2Console\"";
                 proc.Start();
                 Environment.Exit(0);
+                return null;
             }
-        }
-        if (options.Reader is null || (options.TargetReader is { } && options.InstructionReader is { }))
-        {
-            if(options.Reader is null)
+            else if (options.Reader is null)
             {
-                Console.WriteLine("<source options> are mandatory!");
+                Console.WriteLine(Resources.SourceMissed);
             }
-            else
+            else if (options.TargetReader is { } && options.InstructionReader is { })
             {
-                Console.WriteLine("<target options> and <instruction options> are mutually exclusive!");
+                Console.WriteLine(Resources.TargetAndIsntructionsMutuallyExclusive);
             }
-            Console.WriteLine(@$"
-Usage: 
-  {Path.GetFileName(Environment.ProcessPath)} <source options> [<target options>|<instruction options>] [-v] [-?]
-  <source options>:
-    -f <file>          read source from file <file>
-    -s <string>        read source from string <string>
-  <target options>:
-    -tf <file>          read target from file <file>
-    -ts <string>        read target from string <string>
-  <instruction options>
-    -if <file>          read instruction from file <file>
-    -is <file>          read instruction from string <string>
-
-  -v                    show intermediate states
-  -?                    shows help
-");
+            else if(unexpectedArg is { })
+            {
+                Console.WriteLine(Resources.UnexpectedArgument, unexpectedArg);
+            }
+            Console.WriteLine(Resources.Usage, go ? "go" : Path.GetFileName(Environment.ProcessPath));
             Environment.Exit(0xdead);
+            return null;
         }
         return options;
     }
