@@ -15,4 +15,4 @@ All classes are contained in the `Net.Leksi.Rubik2` namespace.
 It is also suggested that you familiarize yourself with the demo project:
 - `Demo:Rubik2Console` - a console application that uses the capabilities of the library.
 
-[More info...](https://github.com/Leksiqq/Leksiqq.github.io/wiki)
+[More info...](https://github.com/Leksiqq/rubik2.net/wiki)
