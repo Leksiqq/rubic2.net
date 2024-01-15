@@ -1,2 +1,2 @@
 @echo off
-rubik2con -go %*
+rubik2console /go %*

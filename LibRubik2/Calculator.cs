@@ -180,11 +180,11 @@ public static class Calculator
             }
             if (ans == -1)
             {
-                throw new InvalidOperationException(Constants.s_TargetUnreachable) { HResult = Constants.s_inputSourceUnreachableCode };
+                throw new InvalidOperationException(Constants.s_targetUnreachable) { HResult = Constants.s_targetUnreachableCode };
             }
 
             Stack<Move> solve = new();
-            State cur = found;
+            State cur = found!;
             while (true)
             {
                 if (!prev.TryGetValue(cur, out Tuple<State, Move>? obj))
@@ -200,7 +200,7 @@ public static class Calculator
                 list.Add(solve.Pop());
             }
 
-            cur = found;
+            cur = found!;
             while (true)
             {
                 if (!prev0.TryGetValue(cur, out Tuple<State, Move>? obj))

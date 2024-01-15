@@ -1,4 +1,4 @@
-﻿using Rubik2Con.Properties;
+﻿using Rubik2Console.Properties;
 using System.Diagnostics;
 using System.Globalization;
 
@@ -17,9 +17,10 @@ internal class Options
         bool waitString = false;
         bool waitTarget = false;
         bool waitInstruction = false;
-        bool go = false;
         bool help = false;
         string? unexpectedArg = null;
+        bool go = false;
+        bool noConsole = false;
 
         foreach (string arg in args)
         {
@@ -97,6 +98,10 @@ internal class Options
             {
                 go = true;
             }
+            else if ("-noconsole".Equals(arg) || "/noconsole".Equals(arg))
+            {
+                noConsole = true;
+            }
             else if (arg.StartsWith("-locale:") || arg.StartsWith("/locale:"))
             {
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(arg.Substring("/locale:".Length));
@@ -106,6 +111,20 @@ internal class Options
                 unexpectedArg = arg;
             }
         }
+        if (!go && !noConsole)
+        {
+            Process process = new();
+
+            process.StartInfo.FileName = "cmd.exe";
+            //process.StartInfo.Arguments = $"/K {Path.Combine(Path.GetDirectoryName(Environment.ProcessPath)!, "init.cmd")}";
+            process.StartInfo.Arguments = $"/K init.cmd";
+            //process.StartInfo.UseShellExecute = true;
+
+            process.Start();
+            Environment.Exit(0);
+            return null;
+        }
+
         if (options.Reader is null || (options.TargetReader is { } && options.InstructionReader is { }) || unexpectedArg is { } || help)
         {
             if (help)

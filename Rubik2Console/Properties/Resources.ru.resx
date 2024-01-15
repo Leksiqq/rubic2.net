@@ -117,17 +117,50 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ColorIndexOutOfRange" xml:space="preserve">
+    <value>Цветовой индекс {0} вне промежутка 0..23!</value>
+  </data>
   <data name="Demo" xml:space="preserve">
     <value>%D0%94%D0%B5%D0%BC%D0%BE</value>
+  </data>
+  <data name="InvalidSourceCharsCount" xml:space="preserve">
+    <value>Исходное состояние должно иметь {0} цветовых символов, а имеет {1}!</value>
+  </data>
+  <data name="InvalidTargetCharsCount" xml:space="preserve">
+    <value>Целевое состояние должно иметь {0} цветовых символов, а имеет {1}!</value>
   </data>
   <data name="SourceMissed" xml:space="preserve">
     <value>&lt;исходные опции&gt; являются обязательными!</value>
   </data>
+  <data name="SourceWrong" xml:space="preserve">
+    <value>Невозможное исходное состояние!</value>
+  </data>
+  <data name="StateIncomplete" xml:space="preserve">
+    <value>Состояние не заполнено!</value>
+  </data>
+  <data name="StateWrong" xml:space="preserve">
+    <value>Невозможное состояние!</value>
+  </data>
   <data name="TargetAndIsntructionsMutuallyExclusive" xml:space="preserve">
     <value>&lt;конечные опции&gt; и &lt;опции инструкций&gt; являются взаимоисключающими!</value>
   </data>
+  <data name="TargetIncomplete" xml:space="preserve">
+    <value>Целевое состояние не заполнено!</value>
+  </data>
+  <data name="TargetUnreachable" xml:space="preserve">
+    <value>Целевое состояние недостижимо!</value>
+  </data>
+  <data name="TargetWrong" xml:space="preserve">
+    <value>Невозможное целевое состояние!</value>
+  </data>
   <data name="UnexpectedArgument" xml:space="preserve">
     <value>Неожиданный аргумент {0}!</value>
+  </data>
+  <data name="UnexpectedColorChar" xml:space="preserve">
+    <value>Неизвестный цветовой символ: '{0}'!</value>
+  </data>
+  <data name="UnexpectedInstruction" xml:space="preserve">
+    <value>Неизвестная инструкция: '{0}'!</value>
   </data>
   <data name="Usage" xml:space="preserve">
     <value>Использование: 

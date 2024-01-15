@@ -117,17 +117,53 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ColorIndexOutOfRange" xml:space="preserve">
+    <value>The Color index {0} is out o range 0..23!</value>
+  </data>
   <data name="Demo" xml:space="preserve">
     <value>Demo</value>
+  </data>
+  <data name="InvalidSourceCharsCount" xml:space="preserve">
+    <value>A source state must have {0} color charactes, but has {1}!</value>
+  </data>
+  <data name="InvalidTargetCharsCount" xml:space="preserve">
+    <value>A target state must have {0} color charactes, but has {1}!</value>
+  </data>
+  <data name="SourceIncomplete" xml:space="preserve">
+    <value>The source is incomplete!</value>
   </data>
   <data name="SourceMissed" xml:space="preserve">
     <value>&lt;source options&gt; are mandatory!</value>
   </data>
+  <data name="SourceWrong" xml:space="preserve">
+    <value>The source is wrong!</value>
+  </data>
+  <data name="StateIncomplete" xml:space="preserve">
+    <value>The state is incomplete!</value>
+  </data>
+  <data name="StateWrong" xml:space="preserve">
+    <value>The state is wrong!</value>
+  </data>
   <data name="TargetAndIsntructionsMutuallyExclusive" xml:space="preserve">
     <value>&lt;target options&gt; and &lt;instruction options&gt; are mutually exclusive!</value>
   </data>
+  <data name="TargetIncomplete" xml:space="preserve">
+    <value>The target is incomplete!</value>
+  </data>
+  <data name="TargetUnreachable" xml:space="preserve">
+    <value>The target is unreachable!</value>
+  </data>
+  <data name="TargetWrong" xml:space="preserve">
+    <value>The target is wrong!</value>
+  </data>
   <data name="UnexpectedArgument" xml:space="preserve">
     <value>Unexpected argument: {0}!</value>
+  </data>
+  <data name="UnexpectedColorChar" xml:space="preserve">
+    <value>Unexpected color character: '{0}'!</value>
+  </data>
+  <data name="UnexpectedInstruction" xml:space="preserve">
+    <value>Unexpected instruction '{0}'!</value>
   </data>
   <data name="Usage" xml:space="preserve">
     <value>Usage: 

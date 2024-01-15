@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Rubik2Con.Properties {
+namespace Rubik2Console.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Rubik2Con.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Rubik2Con.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Rubik2Console.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,47 @@ namespace Rubik2Con.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на The Color index {0} is out o range 0..23!.
+        /// </summary>
+        internal static string ColorIndexOutOfRange {
+            get {
+                return ResourceManager.GetString("ColorIndexOutOfRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Demo.
         /// </summary>
         internal static string Demo {
             get {
                 return ResourceManager.GetString("Demo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на A source state must have {0} color charactes, but has {1}!.
+        /// </summary>
+        internal static string InvalidSourceCharsCount {
+            get {
+                return ResourceManager.GetString("InvalidSourceCharsCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на A target state must have {0} color charactes, but has {1}!.
+        /// </summary>
+        internal static string InvalidTargetCharsCount {
+            get {
+                return ResourceManager.GetString("InvalidTargetCharsCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The source is incomplete!.
+        /// </summary>
+        internal static string SourceIncomplete {
+            get {
+                return ResourceManager.GetString("SourceIncomplete", resourceCulture);
             }
         }
         
@@ -79,6 +115,33 @@ namespace Rubik2Con.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на The source is wrong!.
+        /// </summary>
+        internal static string SourceWrong {
+            get {
+                return ResourceManager.GetString("SourceWrong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The state is incomplete!.
+        /// </summary>
+        internal static string StateIncomplete {
+            get {
+                return ResourceManager.GetString("StateIncomplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The state is wrong!.
+        /// </summary>
+        internal static string StateWrong {
+            get {
+                return ResourceManager.GetString("StateWrong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на &lt;target options&gt; and &lt;instruction options&gt; are mutually exclusive!.
         /// </summary>
         internal static string TargetAndIsntructionsMutuallyExclusive {
@@ -88,11 +151,56 @@ namespace Rubik2Con.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на The target is incomplete!.
+        /// </summary>
+        internal static string TargetIncomplete {
+            get {
+                return ResourceManager.GetString("TargetIncomplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The target is unreachable!.
+        /// </summary>
+        internal static string TargetUnreachable {
+            get {
+                return ResourceManager.GetString("TargetUnreachable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The target is wrong!.
+        /// </summary>
+        internal static string TargetWrong {
+            get {
+                return ResourceManager.GetString("TargetWrong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Unexpected argument: {0}!.
         /// </summary>
         internal static string UnexpectedArgument {
             get {
                 return ResourceManager.GetString("UnexpectedArgument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Unexpected color character: &apos;{0}&apos;!.
+        /// </summary>
+        internal static string UnexpectedColorChar {
+            get {
+                return ResourceManager.GetString("UnexpectedColorChar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Unexpected instruction &apos;{0}&apos;!.
+        /// </summary>
+        internal static string UnexpectedInstruction {
+            get {
+                return ResourceManager.GetString("UnexpectedInstruction", resourceCulture);
             }
         }
         
