@@ -18,6 +18,7 @@ internal class Options
         bool waitTarget = false;
         bool waitInstruction = false;
         bool help = false;
+        bool init = false;
         string? unexpectedArg = null;
         bool go = false;
         bool noConsole = false;
@@ -102,6 +103,10 @@ internal class Options
             {
                 noConsole = true;
             }
+            else if ("-init".Equals(arg) || "/init".Equals(arg))
+            {
+                init = true;
+            }
             else if (arg.StartsWith("-locale:") || arg.StartsWith("/locale:"))
             {
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(arg.Substring("/locale:".Length));
@@ -111,21 +116,19 @@ internal class Options
                 unexpectedArg = arg;
             }
         }
-        if (!go && !noConsole)
+        if (!go && !noConsole && !init)
         {
             Process process = new();
 
             process.StartInfo.FileName = "cmd.exe";
-            //process.StartInfo.Arguments = $"/K {Path.Combine(Path.GetDirectoryName(Environment.ProcessPath)!, "init.cmd")}";
             process.StartInfo.Arguments = $"/K init.cmd";
-            //process.StartInfo.UseShellExecute = true;
 
             process.Start();
             Environment.Exit(0);
             return null;
         }
 
-        if (options.Reader is null || (options.TargetReader is { } && options.InstructionReader is { }) || unexpectedArg is { } || help)
+        if (options.Reader is null || (options.TargetReader is { } && options.InstructionReader is { }) || unexpectedArg is { } || help || init)
         {
             if (help)
             {
@@ -137,17 +140,20 @@ internal class Options
                 Environment.Exit(0);
                 return null;
             }
-            else if (options.Reader is null)
+            else if (!init)
             {
-                Console.WriteLine(Resources.SourceMissed);
-            }
-            else if (options.TargetReader is { } && options.InstructionReader is { })
-            {
-                Console.WriteLine(Resources.TargetAndIsntructionsMutuallyExclusive);
-            }
-            else if(unexpectedArg is { })
-            {
-                Console.WriteLine(Resources.UnexpectedArgument, unexpectedArg);
+                if (options.Reader is null)
+                {
+                    Console.WriteLine(Resources.SourceMissed);
+                }
+                else if (options.TargetReader is { } && options.InstructionReader is { })
+                {
+                    Console.WriteLine(Resources.TargetAndIsntructionsMutuallyExclusive);
+                }
+                else if (unexpectedArg is { })
+                {
+                    Console.WriteLine(Resources.UnexpectedArgument, unexpectedArg);
+                }
             }
             Console.WriteLine(Resources.Usage, go ? "go" : Path.GetFileName(Environment.ProcessPath));
             Environment.Exit(0xdead);
