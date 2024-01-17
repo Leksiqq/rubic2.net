@@ -109,7 +109,7 @@ internal class Options
             }
             else if (arg.StartsWith("-locale:") || arg.StartsWith("/locale:"))
             {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(arg.Substring("/locale:".Length));
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(arg["/locale:".Length..]);
             }
             else
             {
@@ -121,7 +121,7 @@ internal class Options
             Process process = new();
 
             process.StartInfo.FileName = "cmd.exe";
-            process.StartInfo.Arguments = $"/K init.cmd";
+            process.StartInfo.Arguments = "/K init.cmd";
 
             process.Start();
             Environment.Exit(0);

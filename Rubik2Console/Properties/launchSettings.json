@@ -7,9 +7,6 @@
     "Профиль 1": {
       "commandName": "Project",
       "commandLineArgs": "/noconsole /s \"wwww wwww wwww wwww wwww wwww \""
-    },
-    "Профиль 2": {
-      "commandName": "Project"
     }
   }
 }
