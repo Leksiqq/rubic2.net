@@ -155,7 +155,7 @@ internal class Options
                     Console.WriteLine(Resources.UnexpectedArgument, unexpectedArg);
                 }
             }
-            Console.WriteLine(Resources.Usage, go ? "go" : Path.GetFileName(Environment.ProcessPath));
+            Console.WriteLine(Resources.Usage, go || init ? "go" : Path.GetFileName(Environment.ProcessPath));
             Environment.Exit(0xdead);
             return null;
         }
